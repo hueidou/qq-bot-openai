@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: qq-bot-openai
+spec:
+  selector:
+    matchLabels:
+      app: qq-bot-openai
+  template:
+    metadata:
+      labels:
+        app: qq-bot-openai
+    spec:
+      containers:
+      - name: qq-bot-openai
+        image: hueidou/qq-bot-openai:latest
+        env:
+            - name: OPENAI_APIKEY
+              value: 
+            - name: QQBOT_APPID
+              value: 
+            - name: QQBOT_TOKEN
+              value: 
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "200m"

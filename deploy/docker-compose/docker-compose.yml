@@ -1,0 +1,7 @@
+services:
+  qq-bot-openai:
+    image: hueidou/qq-bot-openai:latest
+    environment:
+      - OPENAI_APIKEY=
+      - QQBOT_APPID=
+      - QQBOT_TOKEN=
