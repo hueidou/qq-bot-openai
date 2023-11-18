@@ -5,12 +5,14 @@ from botpy.ext.command_util import Commands
 from openai import OpenAI
 from config import Config
 
-openAIclient = OpenAI(
+openAIClient = OpenAI(
     api_key=Config.OPENAI_APIKEY
 )
 
+openAIModel = Config.OPENAI_MODEL
+
 if Config.OPENAI_BASEURL != "":
-    openAIclient.base_url = Config.OPENAI_BASEURL
+    openAIClient.base_url = Config.OPENAI_BASEURL
 
 _log = logging.get_logger()
 
@@ -18,8 +20,8 @@ _log = logging.get_logger()
 @Commands(name=("gpt"))
 async def gpt(api: BotAPI, message: Message, params=None):
     _log.info(params)
-    completion = openAIclient.chat.completions.create(
-        model="gpt-3.5-turbo",
+    completion = openAIClient.chat.completions.create(
+        model=openAIModel,
         messages=[
             {"role": "user", "content": params}
         ]
